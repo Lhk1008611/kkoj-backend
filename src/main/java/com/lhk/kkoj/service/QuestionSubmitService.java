@@ -1,7 +1,9 @@
 package com.lhk.kkoj.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lhk.kkoj.model.dto.questionsubmit.QuestionSubmitAddRequest;
 import com.lhk.kkoj.model.entity.QuestionSubmit;
+import com.lhk.kkoj.model.entity.User;
 
 
 /**
@@ -10,5 +12,13 @@ import com.lhk.kkoj.model.entity.QuestionSubmit;
 * @createDate 2024-03-27 20:31:08
 */
 public interface QuestionSubmitService extends IService<QuestionSubmit> {
+    /**
+     * 点赞
+     *
+     * @param questionSubmitAddRequest
+     * @param loginUser
+     * @return 题目提交id
+     */
+    long doQuestionSubmit(QuestionSubmitAddRequest questionSubmitAddRequest, User loginUser);
 
 }
