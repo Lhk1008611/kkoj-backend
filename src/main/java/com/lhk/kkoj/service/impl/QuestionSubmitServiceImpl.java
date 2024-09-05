@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lhk.kkoj.common.ErrorCode;
 import com.lhk.kkoj.constant.CommonConstant;
 import com.lhk.kkoj.exception.BusinessException;
+import com.lhk.kkoj.judge.JudgeService;
 import com.lhk.kkoj.mapper.QuestionSubmitMapper;
 import com.lhk.kkoj.model.dto.questionsubmit.QuestionSubmitAddRequest;
 import com.lhk.kkoj.model.dto.questionsubmit.QuestionSubmitQueryRequest;
@@ -21,10 +22,12 @@ import com.lhk.kkoj.service.QuestionSubmitService;
 import com.lhk.kkoj.service.UserService;
 import com.lhk.kkoj.utils.SqlUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -41,6 +44,10 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
 
     @Resource
     private UserService userService;
+
+    @Resource
+    @Lazy
+    private JudgeService judgeService;
 
     /**
      * 提交
@@ -61,7 +68,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         // 判断实体是否存在，根据类别获取实体
         Question question = questionService.getById(questionId);
         if (question == null) {
-            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "题目 {questionId} 不存在");
         }
         // 是否已提交
         long userId = loginUser.getId();
@@ -77,7 +84,12 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         if(!save){
             throw new BusinessException(ErrorCode.SYSTEM_ERROR,"数据插入失败");
         }
-        return questionSubmit.getId();
+        // 异步将提交信息交给判题服务进行判题，提高系统响应速率
+        Long questionSubmitId = questionSubmit.getId();
+        CompletableFuture.runAsync(() -> {
+            judgeService.JudgeQuestion(questionSubmitId);
+        });
+        return questionSubmitId;
     }
 
     /**
