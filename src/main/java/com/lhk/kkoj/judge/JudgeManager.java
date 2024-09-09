@@ -4,7 +4,7 @@ import com.lhk.kkoj.judge.strategy.DefaultJudgeStrategyImpl;
 import com.lhk.kkoj.judge.strategy.JavaJudgeStrategyImpl;
 import com.lhk.kkoj.judge.strategy.JudgeContext;
 import com.lhk.kkoj.judge.strategy.JudgeStrategy;
-import com.lhk.kkoj.model.dto.questionsubmit.JudgeInfo;
+import com.lhk.kkoj.judge.codesandbox.model.JudgeInfo;
 import com.lhk.kkoj.model.entity.QuestionSubmit;
 import org.springframework.stereotype.Service;
 

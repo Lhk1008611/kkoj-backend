@@ -3,7 +3,7 @@ package com.lhk.kkoj.judge.codesandbox.impl;
 import com.lhk.kkoj.judge.codesandbox.CodeSandBox;
 import com.lhk.kkoj.judge.codesandbox.model.ExecuteCodeRequest;
 import com.lhk.kkoj.judge.codesandbox.model.ExecuteCodeResponse;
-import com.lhk.kkoj.model.dto.questionsubmit.JudgeInfo;
+import com.lhk.kkoj.judge.codesandbox.model.JudgeInfo;
 import com.lhk.kkoj.model.enums.JudgeInfoMessageEnum;
 import com.lhk.kkoj.model.enums.QuestionSubmitStatusEnum;
 

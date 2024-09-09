@@ -3,7 +3,7 @@ package com.lhk.kkoj.judge.strategy;
 import cn.hutool.json.JSONUtil;
 import com.lhk.kkoj.model.dto.question.JudgeCase;
 import com.lhk.kkoj.model.dto.question.JudgeConfig;
-import com.lhk.kkoj.model.dto.questionsubmit.JudgeInfo;
+import com.lhk.kkoj.judge.codesandbox.model.JudgeInfo;
 import com.lhk.kkoj.model.entity.Question;
 import com.lhk.kkoj.model.enums.JudgeInfoMessageEnum;
 import org.springframework.stereotype.Service;

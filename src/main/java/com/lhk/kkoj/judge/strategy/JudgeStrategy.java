@@ -1,6 +1,6 @@
 package com.lhk.kkoj.judge.strategy;
 
-import com.lhk.kkoj.model.dto.questionsubmit.JudgeInfo;
+import com.lhk.kkoj.judge.codesandbox.model.JudgeInfo;
 
 /**
  * 判题策略接口

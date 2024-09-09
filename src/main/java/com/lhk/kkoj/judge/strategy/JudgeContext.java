@@ -1,7 +1,7 @@
 package com.lhk.kkoj.judge.strategy;
 
 import com.lhk.kkoj.model.dto.question.JudgeCase;
-import com.lhk.kkoj.model.dto.questionsubmit.JudgeInfo;
+import com.lhk.kkoj.judge.codesandbox.model.JudgeInfo;
 import com.lhk.kkoj.model.entity.Question;
 import com.lhk.kkoj.model.entity.QuestionSubmit;
 import lombok.Data;
