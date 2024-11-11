@@ -9,6 +9,7 @@ import com.lhk.kkoj.model.enums.JudgeInfoMessageEnum;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 默认判题策略实现类
@@ -21,8 +22,8 @@ public class JavaJudgeStrategyImpl implements JudgeStrategy {
         List<String> inputList = judgeContext.getInputList();
         List<String> outputList = judgeContext.getOutputList();
         JudgeInfo judgeInfo = judgeContext.getJudgeInfo();
-        long memory = judgeInfo.getMemory();
-        long time = judgeInfo.getTime();
+        long memory = Optional.ofNullable(judgeInfo.getMemory()).orElse(0L);
+        long time = Optional.ofNullable(judgeInfo.getTime()).orElse(0L);
         JudgeInfo reponseJudgeInfo = new JudgeInfo();
         reponseJudgeInfo.setMemory(memory);
         reponseJudgeInfo.setTime(time);
